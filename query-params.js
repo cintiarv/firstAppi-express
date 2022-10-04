@@ -57,3 +57,30 @@ server.listen(8080, () => { //va al final del código
 //script start -> producción
 //script dev -> desarrollo
 //tarea filtrar por los 5 primeros, x primeros
+
+server.delete('/koders/:idKoder', async (request, response) => {
+    /* 
+    0-. de donde lo quiero eliminar? archivo -> leer el archivo  fs.promise.readFile
+    1-. que koder quiere eliminar? 
+    2-. cual es el id del koder a eliminar? request.params.id
+    3-. buscar al koder en lista y eliminar al koder -.filter(), .splice(), 
+    4-. Actualizar al archivo sin el koder -> fs.promise.writeFile()
+    5-. Responder
+    */
+    const dataFile = await fs.promises.readFile('kodemia.json', 'utf8')
+    const json = JSON.parse(dataFile)
+
+    //destructuring assigment -> para acceder a un objeto de forma más sencilla
+    const { idKoder } = request.params // esto es igual a const id = request.params.idKoder
+
+    const newKoders = json.koders.filter(koder => koder.id !== parseInt(idKoder))
+
+    json.koders = newKoders //reemplazando a los nuevos koder sin el koder eliminado
+
+    await fs.promises.writeFile('kodemia.json', JSON.stringify(json, null, 2), 'utf8')
+
+    response.json({
+        succes:true,
+        msg: 'Koder eliminado'
+    })
+})
