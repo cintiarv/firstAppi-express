@@ -1,39 +1,35 @@
-import express from 'express'
+//KODERS
+/* import express from 'express'
+import kodersRouter from './routers/koders.router.js'
+
 
 const server = express() //creando nuestro server 
 
-server.get('/', (request, response) => { //get recibe la ruta a la que va a hacer la petición y recibe un request listener. express nos trae esta forma en vez de los condicionales ponemos .get, .post, .patch, etc.
-    /* response.setHeader('Content-Type', 'application/json')
-    const msg = {
-        msg: 'Hola desde GET /'
-    }
-    const jsonStr = JSON.stringify(msg)
-    response.write(jsonStr) //diagonal es la ruta raíz (primera ruta que se encuentra) se le llama root path 
-    response.end() */
 
-    //Express
-    response.json({ //ya viene incluido el response.end 
-        msg:'Hola desde GET /  c:'
-    })
+server.use(express.json()) //middleware -> convierte lo que llega a body a un json
+
+//aqui encuentro a la ruta /koders
+server.use('/koders', kodersRouter)//diciendole al server que conozca este router , ánclate a la ruta kdkoders
+
+//Poner a escuchar nuestro server 
+server.listen(8080, () => { //va al final del código 
+    console.log('Server listening on port 8080');
 })
-
-server.get('/hola', (request, response) => { //esta es otra ruta GET/hola
-    response.write('GET /hola')
-    response.end()
-})
-
-server.post('/', (request, response) => {
-    response.write('POST /')
-    response.end()
-})
-
-server.patch('/', (request, response) => {
-    response.write('PATCH /')
-    response.end()
-})
+ */
 
 
+//MENTORS
+import express from 'express'
+import mentorsRouter from './routers/mentors.routers.js'
 
+
+const server = express() //creando nuestro server 
+
+
+server.use(express.json()) //middleware -> convierte lo que llega a body a un json
+
+//aqui encuentro a la ruta /koders
+server.use('/mentors', mentorsRouter)//diciendole al server que conozca este router , ánclate a la ruta kdkoders
 
 //Poner a escuchar nuestro server 
 server.listen(8080, () => { //va al final del código 

@@ -19,7 +19,6 @@ server.get('/koders', async (request, response) => { //cuando yo utilice un asyn
     const dataFile = await fs.promises.readFile('./kodemia.json', 'utf8')//trabajando con promesas
     const json = JSON.parse(dataFile)
     let koders = json.koders
-
     //accedo a los parámetros directamente en  primero es ? y después &
     const queries = request.query
     //destructurando para acceder a generacion
@@ -37,7 +36,7 @@ server.get('/koders', async (request, response) => { //cuando yo utilice un asyn
     }
     //ahora validar si viene gender
     if(gender){
-        kodersFiltered = kodersFiltered.filter(koder =>koder.gender === gender) //gender no hay que parsearlo ya que ya es un string 
+        kodersFiltered = kodersFiltered.filter(koder => koder.gender === gender) //gender no hay que parsearlo ya que ya es un string 
     }
 
 
@@ -56,7 +55,13 @@ server.listen(8080, () => { //va al final del código
 })
 //script start -> producción
 //script dev -> desarrollo
-//tarea filtrar por los 5 primeros, x primeros
+
+
+
+
+
+
+
 
 server.delete('/koders/:idKoder', async (request, response) => {
     /* 

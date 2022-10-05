@@ -13,10 +13,11 @@ const server = express() //sino lo agrego me regresará undefined
 
 server.use(express.json()) //para que se imprima en mi consola lo que añadí en insomnia 
 //middleware -> convierte lo que llega en body a un json 
+server.use('/koders', kodersRouter)
 
 
 //filtrar por generación y por género -> se obtienen directamente del objeto 
-server.get('/koders', async (request, response) => { //cuando yo utilice un async await tengo que poner en una función asíncrono, se pone async al callback porque es la función que contiene la promesa 
+server.get('/koders', async(request, response) => { //cuando yo utilice un async await tengo que poner en una función asíncrono, se pone async al callback porque es la función que contiene la promesa 
     const dataFile = await fs.promises.readFile('./kodemia.json', 'utf8')//trabajando con promesas
     const json = JSON.parse(dataFile)
     const koders = json.koders
@@ -165,4 +166,4 @@ server.listen(8080, () => { //va al final del código
     console.log('Server listening on port 8080');
 })
 
- **/
+ 
