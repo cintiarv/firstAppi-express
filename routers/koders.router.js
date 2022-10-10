@@ -1,5 +1,6 @@
 //requiero el modulo de express
 //query params (friltros), rouetrs usbconjutno del ersver ppal que nos permite modularizar los endpoints que tengamos -> ocuparlo semánticamente(solo koders, solo mentores, etc)
+//endpoints solo para autores 
 
 import express from 'express'
 import fs from 'fs'
